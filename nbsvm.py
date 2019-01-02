@@ -103,7 +103,7 @@ def compute_ratios(counters, alpha=1.0):
 
     # sum ngram counts for all classes with alpha smoothing
     # 2* because one gets subtracted when q_c is calculate by subtracting p_c
-    sum_counts = np.full(v, 2*alpha)
+    sum_counts = np.full(v, 2 * alpha)
     for c in counters:
         counter = counters[c]
         for t in all_ngrams:
@@ -218,12 +218,12 @@ def main(train, test, text_row, class_row, ngram, debug_counters=None):
     ngram = [int(i) for i in ngram]
     counters = build_counters(train, ngram, text_row, class_row)
 
-    if(debug_counters):
+    if debug_counters:
         save_counters(counters, debug_counters)
 
     dic, ratios, v = compute_ratios(counters)
     classes = ratios.keys()
-    print v
+    print(v)
 
     print('Loading Data')
     Xs_train, Ys_train, y_train = load_data(train, text_row, class_row,
@@ -257,6 +257,7 @@ def main(train, test, text_row, class_row, ngram, debug_counters=None):
     # finally the scores
     acc_svm = accuracy_score(y_true, pred)
     print('NBSVM: %f' % (acc_svm,))
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run NB-SVM.')
